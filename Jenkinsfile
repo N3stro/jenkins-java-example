@@ -1,9 +1,11 @@
-pipeline { 
-    agent any  
-    stages { 
-        stage('Build') { 
-            steps { 
-               echo 'This is a minimal pipeline.' 
+pipeline {
+    agent {
+        docker { image 'node:20.9.0-alpine3.18' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
             }
         }
     }
