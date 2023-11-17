@@ -17,6 +17,15 @@ pipeline {
                 sh 'java -jar target/spring-boot-0.0.1-SNAPSHOT.jar'
             }
         }
+        stage('Sonar') { 
+            steps {
+                
+                sh 'mvn sonar:sonar \
+                    -Dsonar.projectKey=test \
+                    -Dsonar.host.url=http://127.0.0.1:8084 \
+                    -Dsonar.login=e75743a5d9970795d00d7132ed779d462ddbfd06'
+            }
+        }        
     }
     post {
         // Clean after build
