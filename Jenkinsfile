@@ -9,12 +9,12 @@ pipeline {
             steps {
                 sh 'mvn clean package' 
                 stash includes: 'target/*.jar', name: 'targetfiles'
-                sh 'ls -al'
             }
         }
         stage('Deploy') { 
             steps {
                 unstash 'targetfiles'
+                sh 'ls -al target'
             }
         }
     }
