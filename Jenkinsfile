@@ -8,11 +8,14 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'mvn clean package' 
+                stash includes: 'target/*.jar', name: 'targetfiles'
+                sh 'ls -al'
             }
         }
         stage('Deploy') { 
             steps {
-                sh './mvnw spring-boot:run'
+                unstash 'targetfiles'
+                sh 'ls -al'
             }
         }
     }
