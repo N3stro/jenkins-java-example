@@ -15,7 +15,6 @@ pipeline {
         stage('Deploy') { 
             steps {
                 unstash 'targetfiles'
-                sh 'ls -al'
             }
         }
     }
