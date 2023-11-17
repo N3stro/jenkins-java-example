@@ -11,12 +11,6 @@ pipeline {
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
-        stage('Deploy') { 
-            steps {
-                unstash 'targetfiles'
-                sh 'java -jar target/spring-boot-0.0.1-SNAPSHOT.jar'
-            }
-        }
         stage('Sonar') { 
             steps {
                 
@@ -25,7 +19,13 @@ pipeline {
                     -Dsonar.host.url=http://127.0.0.1:8084 \
                     -Dsonar.login=e75743a5d9970795d00d7132ed779d462ddbfd06'
             }
-        }        
+        }     
+        stage('Deploy') { 
+            steps {
+                unstash 'targetfiles'
+                sh 'java -jar target/spring-boot-0.0.1-SNAPSHOT.jar'
+            }
+        }   
     }
     post {
         // Clean after build
