@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') { 
             steps {
                 unstash 'targetfiles'
-                sh 'ls -al target'
+                sh 'java -jar target/spring-boot-0.0.1-SNAPSHOT.jar'
             }
         }
     }
