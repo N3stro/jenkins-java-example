@@ -4,27 +4,28 @@ pipeline {
             image 'maven:3.9.5-eclipse-temurin-21-alpine' 
         }
     }
-    triggers {
-        pollSCM('* * * * *') // Poll SCM every minute
-    }
     stages {
         stage('Build') { 
             steps {
-                script {
-                    if (changeset.isEmpty()) {
-                        echo 'No changes in the main branch. Skipping build.'
-                        currentBuild.result = 'ABORTED'
-                    } else {
-                        echo 'Building with changes in the main branch.'
-                        sh 'mvn -B clean package'
-                    }
-                }
+                cleanWs()
+                sh 'mvn clean package' 
             }
         }
         stage('Deploy') { 
             steps {
                 sh './mvnw spring-boot:run'
             }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
 }
