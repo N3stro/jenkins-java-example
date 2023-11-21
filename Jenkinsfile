@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') { 
             steps {
                 unstash 'targetfiles'
-                sh 'java -jar target/spring-boot-0.0.1-SNAPSHOT.jar'
+                sh 'java -jar target/spring-boot-0.0.2-SNAPSHOT.jar'
             }
         }   
     }
