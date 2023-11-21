@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn clean package deploy' 
+                sh 'mvn clean package deploy --s settings.xml' 
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
