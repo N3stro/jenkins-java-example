@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>spring-boot</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>spring-boot</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -65,22 +65,22 @@
 		</plugins>
 	</build>
 
-    <!-- <distributionManagement>
+    <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://localhost:8081/repository/tnl-java/</url>
+            <url>http://localhost:8081/repository/tnl-java-release/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
-            <url>http://localhost:8081/repository/tnl-java/</url>
+            <url>http://localhost:8081/repository/tnl-java-snapshot/</url>
         </snapshotRepository>
-    </distributionManagement> -->
+    </distributionManagement>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
    		<snapshotRepository>
       		<id>nexus</id>
       		<url>http://localhost:8081/repository/tnl-java/</url>
    		</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement> -->
 
 </project>
