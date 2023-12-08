@@ -11,6 +11,12 @@ pipeline {
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
+        stage('Release') { 
+            steps {
+                sh 'release:clean release:prepare release:perform -DreleaseVersion=${releaseVersion} -DdevelopmentVersion=${developmentVersion}' 
+              
+            }
+        }
         stage('Sonar') { 
             steps {
                 
